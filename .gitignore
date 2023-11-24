@@ -1,3 +1,4 @@
+*.exe
 *.[oa]
 *.lo
 *.loT
@@ -5,6 +6,7 @@
 *.gmo
 *.orig
 *.rej
+*.swp
 *~
 
 Makefile
@@ -22,6 +24,7 @@ Makefile.in
 /config.status
 /config.sub
 /configure
+/compile
 /demo/demo
 /demo/generic-position-demo
 /demo/mv-demo
@@ -38,6 +41,7 @@ Makefile.in
 /goocanvas.pc
 /goocanvas-2.0.pc
 /gtk-doc.make
+/gtk-doc.m4
 /install-sh
 /libtool
 /ltmain.sh
