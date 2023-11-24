@@ -102,13 +102,13 @@ libgoocanvasinclude_HEADERS =		\
 goocanvasmarshal.h: stamp-goocanvasmarshal.h
 	@true
 stamp-goocanvasmarshal.h: @REBUILD@ goocanvasmarshal.list
-	$(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal $(srcdir)/goocanvasmarshal.list --header >> xgen-gmlh \
+	$(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal $(srcdir)/goocanvasmarshal.list --header | cat - >> xgen-gmlh \
 	&& (cmp -s xgen-gmlh goocanvasmarshal.h || cp xgen-gmlh goocanvasmarshal.h) \
 	&& rm -f xgen-gmlh \
 	&& echo timestamp > $(@F)	
 goocanvasmarshal.c: @REBUILD@ goocanvasmarshal.list
 	(echo "#include \"goocanvasmarshal.h\""; \
-	 $(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal $(srcdir)/goocanvasmarshal.list --body) >> xgen-gmlc \
+	 $(GLIB_GENMARSHAL) --prefix=goo_canvas_marshal $(srcdir)/goocanvasmarshal.list --body) | cat - >> xgen-gmlc \
 	&& cp xgen-gmlc goocanvasmarshal.c \
 	&& rm -f xgen-gmlc
 
@@ -121,7 +121,7 @@ stamp-goocanvasenumtypes.h: @REBUILD@ $(goo_canvas_public_headers) Makefile
 		--fprod "/* Enumerations from \"@filename@\" */\n" \
 		--vhead "GType @enum_name@_get_type (void);\n#define GOO_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n\n\n" \
 		--ftail "G_END_DECLS\n\n#endif /* __GOO_CANVAS_ENUM_TYPES_H__ */" \
-		$(libgoocanvas_public_headers)) >> xgen-gtbh \
+		$(libgoocanvas_public_headers)) | cat - >> xgen-gtbh \
 	&& (cmp -s xgen-gtbh goocanvasenumtypes.h || cp xgen-gtbh goocanvasenumtypes.h ) \
 	&& rm -f xgen-gtbh \
 	&& echo timestamp > $(@F)
@@ -134,7 +134,7 @@ goocanvasenumtypes.c: @REBUILD@ $(goo_canvas_public_headers) Makefile
 		--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n if( etype == 0 ) \n  {\n    static const G@Type@Value values[] = {" \
 		--vprod "      { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
 		--vtail "      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\"@EnumName@\", values );\n  }\n  return etype;\n}\n" \
-		$(libgoocanvas_public_headers)) > xgen-gtbc \
+		$(libgoocanvas_public_headers)) | cat - > xgen-gtbc \
 	&& cp xgen-gtbc goocanvasenumtypes.c  \
 	&& rm -f xgen-gtbc
 
