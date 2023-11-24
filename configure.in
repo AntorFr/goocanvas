@@ -80,7 +80,6 @@ Makefile
 src/Makefile
 demo/Makefile
 docs/Makefile
-po/Makefile.in
 goocanvas.pc
 ])
 

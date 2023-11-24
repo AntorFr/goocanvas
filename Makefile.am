@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = src demo docs po
+SUBDIRS = src demo
 
 # require automake 1.7
 AUTOMAKE_OPTIONS = 1.7
