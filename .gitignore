@@ -71,3 +71,4 @@ Makefile.in
 /docs/xml
 /docs/tmpl/goo*.sgml
 /docs/tmpl/goo*.bak
+.DS_Store

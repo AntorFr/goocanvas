@@ -26,6 +26,7 @@ AC_PROG_CC
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 
+#pkgauxdir="/root/.local/share/crossroad/roads/w32/bellepouleV6/share/libtool/build-aux"
 pkg_modules="gtk+-2.0 >= 2.12.0 glib-2.0 >= 2.10.0 cairo >= 1.4.0"
 PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
 AC_SUBST(PACKAGE_CFLAGS)
@@ -39,10 +40,12 @@ dnl i18n
 ALL_LINGUAS="`grep -v '^#' "$srcdir/po/LINGUAS" | tr '\n' ' '`"
 AM_GLIB_GNU_GETTEXT
 
-GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
+#GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
+GLIB_GENMARSHAL=/usr/bin/glib-genmarshal
 AC_SUBST(GLIB_GENMARSHAL)
 
-GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
+#GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
+GLIB_MKENUMS=/usr/bin/glib-mkenums
 AC_SUBST(GLIB_MKENUMS)
 
 AC_ARG_ENABLE(rebuilds,
